@@ -1,0 +1,8 @@
+spring:
+ datasource:
+  url: jdbc:h2:mem:fase3db;DB_CLOSE_DELAY=-1
+  username: fiapgrupo8
+  password: fiapgrupo8
+ jpa:  show-sql: true 
+  generate-ddl: true
+server:  port: 8088 
