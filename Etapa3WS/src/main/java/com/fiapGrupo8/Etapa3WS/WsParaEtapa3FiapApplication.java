@@ -28,7 +28,7 @@ public class WsParaEtapa3FiapApplication {
 
 			log.info("-------------------------------");
 			log.info("-------------------------------");
-			log.info("Criando Teste e inserindo na base...");
+			log.info("Criando Teste e inserindo na base.");
 			log.info("-------------------------------");
 			
 			Product product1 = new Product();
