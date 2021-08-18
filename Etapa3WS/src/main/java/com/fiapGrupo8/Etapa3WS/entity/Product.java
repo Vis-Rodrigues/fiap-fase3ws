@@ -1,5 +1,9 @@
 package com.fiapGrupo8.Etapa3WS.entity;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,12 +15,12 @@ import com.fiapGrupo8.Etapa3WS.dto.ProductDTOCreateUpdate;
 
 @Entity
 @Table(name = "TB_PRODUCTS")
-public class Product {
-	
+public class Product implements Serializable {
+
 	public Product() {
-		
+
 	}
-	
+
 	public Product(ProductDTOCreateUpdate product) {
 		this.name = product.getName();
 		this.brand = product.getBrand();
@@ -24,32 +28,32 @@ public class Product {
 		this.isVegetarian = product.getIsVegetarian();
 		this.isGlutenFree = product.getIsGlutenFree();
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
-	
+	Long product_id;
+
 	@Column
 	String name;
-	
+
 	@Column
 	String brand;
-	
+
 	@Column
 	Boolean isVegan;
-	
+
 	@Column
 	Boolean isVegetarian;
-	
+
 	@Column
 	Boolean isGlutenFree;
 
 	public Long getId() {
-		return id;
+		return product_id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		this.product_id = id;
 	}
 
 	public String getName() {
@@ -92,6 +96,6 @@ public class Product {
 		this.isGlutenFree = isGlutenFree;
 	}
 
-	
-	
+
+
 }
