@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,11 +29,18 @@ public class ProductController {
 	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
-
+	
+//	@GetMapping
+//	public List<ProductDTO> getAllProducts(){
+//		return productService.getAllProducts();
+//	}
 	
 	@GetMapping
-	public List<ProductDTO> getAllProducts(){
-		return productService.getAllProducts();
+	public List<ProductDTO> getAllProducts(
+			@RequestParam(required = false, value = "isVegan") boolean isVegan,
+			@RequestParam(required = false, value = "isVegetarian") boolean isVegetarian,
+			@RequestParam(required = false, value = "isGlutenFree") boolean isGlutenFree){
+		return productService.getProductWithType(isVegan, isVegetarian, isGlutenFree);
 	}
 	
 	@GetMapping("/name/{name}")
@@ -40,9 +48,8 @@ public class ProductController {
 		return productService.getProductByName(productName);
 	}
 	
-	
 	@GetMapping("/id/{id}")
-	public List<ProductDTO> getProductById(@PathVariable(name = "id") Long id){
+	public ProductDTO getProductById(@PathVariable(name = "id") Long id){
 		return productService.getProductById(id);
 	}
 	

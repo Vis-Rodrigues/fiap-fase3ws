@@ -1,15 +1,17 @@
-package com.fiapGrupo8.Etapa3WS.service;
+package com.fiapGrupo8.Etapa3WS.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.fiapGrupo8.Etapa3WS.Repository.ProductRepository;
 import com.fiapGrupo8.Etapa3WS.dto.ProductDTO;
 import com.fiapGrupo8.Etapa3WS.dto.ProductDTOCreateUpdate;
 import com.fiapGrupo8.Etapa3WS.entity.Product;
+import com.fiapGrupo8.Etapa3WS.repository.ProductRepository;
+import com.fiapGrupo8.Etapa3WS.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -28,11 +30,30 @@ public class ProductServiceImpl implements ProductService {
 		
 		productList = productRepository.findAll();
 		
-		return productList.stream().map(product -> new ProductDTO(product)).collect(Collectors.toList());
-
+		return productList.stream()
+				.map(product -> new ProductDTO(product)).collect(Collectors.toList());
 		
 	}
-
+	
+	@Override
+	public List<ProductDTO> getProductWithType(boolean isVegan, boolean isVegetarian, boolean isGlutenFree) {
+		List<Product> productList;
+		
+		if (isVegan) {
+			productList = productRepository.findAllByIsVeganTrue();
+		}else if (isVegetarian) {
+			productList = productRepository.findAllByIsVegetarianTrue();			
+		}else if (isGlutenFree) {
+			productList = productRepository.findAllByIsGlutenFreeTrue();			
+		}else {
+			productList = productRepository.findAll();
+		}
+		
+		return productList.stream()
+				.map(product -> new ProductDTO(product)).collect(Collectors.toList());
+		
+	}
+	
 	@Override
 	public List<ProductDTO> getProductByName(String name) {
 		List<Product> productList;
@@ -47,16 +68,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductDTO> getProductById(Long id) {
-		List<Product> productList;
-        if (id != null) {
-        	productList = productRepository.findAllById(id);
-        } else {
-        	productList = productRepository.findAll();
-        }
-        return productList.stream()
-                .map(product -> new ProductDTO(product))
-                .collect(Collectors.toList());
+	public ProductDTO getProductById(Long id) {
+     
+		Product product = productRepository.findById(id)
+        		.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        
+        return new ProductDTO(product);
 	}
 
 	@Override
@@ -69,7 +86,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductDTO updateProductById(ProductDTO productDTO, Long id) {
 
-		Product product = productRepository.findById(id).stream().findFirst().orElseThrow();
+		Product product = null; //productRepository.findById(id).stream().findFirst().orElseThrow();
 
 		product.setBrand(productDTO.getBrand());  
 		product.setIsGlutenFree(productDTO.getIsGlutenFree());
@@ -84,8 +101,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void deleteProductById(Long id) {
-		Product product = productRepository.findById(id).stream().findFirst().orElseThrow();
-		productRepository.delete(product);
+//		Product product = productRepository.findById(id).stream().findFirst().orElseThrow();
+//		productRepository.delete(product);
 
 	}
 

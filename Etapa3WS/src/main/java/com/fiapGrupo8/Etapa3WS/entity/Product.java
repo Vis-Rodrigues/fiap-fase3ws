@@ -1,9 +1,7 @@
 package com.fiapGrupo8.Etapa3WS.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,21 +15,11 @@ import com.fiapGrupo8.Etapa3WS.dto.ProductDTOCreateUpdate;
 @Table(name = "TB_PRODUCTS")
 public class Product implements Serializable {
 
-	public Product() {
-
-	}
-
-	public Product(ProductDTOCreateUpdate product) {
-		this.name = product.getName();
-		this.brand = product.getBrand();
-		this.isVegan = product.getIsVegan();
-		this.isVegetarian = product.getIsVegetarian();
-		this.isGlutenFree = product.getIsGlutenFree();
-	}
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long product_id;
+	Long productId;
 
 	@Column
 	String name;
@@ -47,13 +35,52 @@ public class Product implements Serializable {
 
 	@Column
 	Boolean isGlutenFree;
+	
+	@Column
+	Double price;
+	
+	@Column
+	String description;
+	
+	@Column
+	String urlImage;
 
-	public Long getId() {
-		return product_id;
+	
+	public Product() {
+
 	}
 
-	public void setId(Long id) {
-		this.product_id = id;
+	public Product(Long product_id, String name, String brand, Boolean isVegan, Boolean isVegetarian,
+			Boolean isGlutenFree, Double price, String description, String urlImage) {
+		super();
+		this.productId = product_id;
+		this.name = name;
+		this.brand = brand;
+		this.isVegan = isVegan;
+		this.isVegetarian = isVegetarian;
+		this.isGlutenFree = isGlutenFree;
+		this.price = price;
+		this.description = description;
+		this.urlImage = urlImage;
+	}
+	
+	public Product(ProductDTOCreateUpdate product) {
+		this.name = product.getName();
+		this.brand = product.getBrand();
+		this.isVegan = product.getIsVegan();
+		this.isVegetarian = product.getIsVegetarian();
+		this.isGlutenFree = product.getIsGlutenFree();
+		this.price = product.getPrice();
+		this.description = product.getDescription();
+		this.urlImage = product.getUrlImage();
+	}
+	
+	public Long getId() {
+		return productId;
+	}
+
+	public void setId(Long product_id) {
+		this.productId = product_id;
 	}
 
 	public String getName() {
@@ -96,6 +123,28 @@ public class Product implements Serializable {
 		this.isGlutenFree = isGlutenFree;
 	}
 
+	public Double getPrice() {
+		return price;
+	}
 
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
 
 }

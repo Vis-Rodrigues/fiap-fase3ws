@@ -9,9 +9,10 @@ public interface ProductService {
 
 	List<ProductDTO> getAllProducts();
 	List<ProductDTO> getProductByName(String name);
-	List<ProductDTO> getProductById(Long id);
+	ProductDTO getProductById(Long id);
 	ProductDTO createProduct(ProductDTOCreateUpdate product);
 	ProductDTO updateProductById(ProductDTO product, Long id);
 	void deleteProductById(Long id);
+	List<ProductDTO> getProductWithType(boolean isVegan, boolean isVegetarian, boolean isGlutenFree);
 }
 

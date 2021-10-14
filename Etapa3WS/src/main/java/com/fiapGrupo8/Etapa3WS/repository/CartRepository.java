@@ -1,4 +1,4 @@
-package com.fiapGrupo8.Etapa3WS.Repository;
+package com.fiapGrupo8.Etapa3WS.repository;
 
 import java.util.List;
 

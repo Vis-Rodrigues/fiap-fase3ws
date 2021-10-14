@@ -1,17 +1,18 @@
-package com.fiapGrupo8.Etapa3WS.service;
+package com.fiapGrupo8.Etapa3WS.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.fiapGrupo8.Etapa3WS.Repository.CartRepository;
-import com.fiapGrupo8.Etapa3WS.Repository.ProductRepository;
 import com.fiapGrupo8.Etapa3WS.dto.CartDTO;
 import com.fiapGrupo8.Etapa3WS.dto.CartDTOCreateUpdate;
 import com.fiapGrupo8.Etapa3WS.dto.ProductDTO;
 import com.fiapGrupo8.Etapa3WS.entity.Cart;
 import com.fiapGrupo8.Etapa3WS.entity.Product;
+import com.fiapGrupo8.Etapa3WS.repository.CartRepository;
+import com.fiapGrupo8.Etapa3WS.repository.ProductRepository;
+import com.fiapGrupo8.Etapa3WS.service.CartService;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -57,7 +58,7 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public CartDTO updateCartById(CartDTO cartDTO, Long id) {
-		Cart cart = cartRepository.findById(id).stream().findFirst().orElseThrow();
+		Cart cart = null; //cartRepository.findById(id).stream().findFirst().orElseThrow();
 
 		cart.setProductsInCart(cartDTO.getProductsInCart());
 
@@ -67,8 +68,8 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public CartDTO addProductListToCartById(Long productId, Long id) {
-		Cart cart = cartRepository.findById(id).stream().findFirst().orElseThrow();
-		Product product = productRepository.findById(productId).stream().findFirst().orElseThrow();
+		Cart cart = null; //cartRepository.findById(id).stream().findFirst().orElseThrow();
+		Product product = null; //productRepository.findById(productId).stream().findFirst().orElseThrow();
 
 		cart.getProductsInCart().add(product);
 		
