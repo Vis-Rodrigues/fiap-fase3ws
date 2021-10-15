@@ -13,6 +13,6 @@ public interface ProductService {
 	ProductDTO createProduct(ProductDTOCreateUpdate product);
 	ProductDTO updateProductById(ProductDTO product, Long id);
 	void deleteProductById(Long id);
-	List<ProductDTO> getProductWithType(boolean isVegan, boolean isVegetarian, boolean isGlutenFree);
+	List<ProductDTO> getProductWithType(Boolean isVegan, Boolean isVegetarian, Boolean isGlutenFree);
 }
 

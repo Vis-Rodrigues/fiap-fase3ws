@@ -36,15 +36,15 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductDTO> getProductWithType(boolean isVegan, boolean isVegetarian, boolean isGlutenFree) {
+	public List<ProductDTO> getProductWithType(Boolean isVegan, Boolean isVegetarian, Boolean isGlutenFree) {
 		List<Product> productList;
 		
-		if (isVegan) {
-			productList = productRepository.findAllByIsVeganTrue();
-		}else if (isVegetarian) {
-			productList = productRepository.findAllByIsVegetarianTrue();			
-		}else if (isGlutenFree) {
-			productList = productRepository.findAllByIsGlutenFreeTrue();			
+		if (isVegan != null) {
+			productList = productRepository.findByIsVegan(isVegan);
+		}else if (isVegetarian != null) {
+			productList = productRepository.findByIsVegetarian(isVegetarian);			
+		}else if (isGlutenFree != null) {
+			productList = productRepository.findByIsGlutenFree(isGlutenFree);			
 		}else {
 			productList = productRepository.findAll();
 		}

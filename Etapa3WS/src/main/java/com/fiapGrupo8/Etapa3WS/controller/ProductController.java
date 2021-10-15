@@ -37,9 +37,9 @@ public class ProductController {
 	
 	@GetMapping
 	public List<ProductDTO> getAllProducts(
-			@RequestParam(required = false, value = "isVegan") boolean isVegan,
-			@RequestParam(required = false, value = "isVegetarian") boolean isVegetarian,
-			@RequestParam(required = false, value = "isGlutenFree") boolean isGlutenFree){
+			@RequestParam(required = false, value = "isVegan") Boolean isVegan,
+			@RequestParam(required = false, value = "isVegetarian") Boolean isVegetarian,
+			@RequestParam(required = false, value = "isGlutenFree") Boolean isGlutenFree){
 		return productService.getProductWithType(isVegan, isVegetarian, isGlutenFree);
 	}
 	

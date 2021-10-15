@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import com.fiapGrupo8.Etapa3WS.dto.ProductDTOCreateUpdate;
 
 @Entity
-@Table(name = "TB_PRODUCTS")
+@Table(name = "TB_PRODUCT")
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
