@@ -5,6 +5,7 @@ package com.fiapGrupo8.Etapa3WS.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.fiapGrupo8.Etapa3WS.dto.ProductDTO;
 import com.fiapGrupo8.Etapa3WS.dto.ProductDTOCreateUpdate;
 import com.fiapGrupo8.Etapa3WS.service.ProductService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("products")
 public class ProductController {
@@ -48,7 +50,7 @@ public class ProductController {
 		return productService.getProductByName(productName);
 	}
 	
-	@GetMapping("/id/{id}")
+	@GetMapping("/{id}")
 	public ProductDTO getProductById(@PathVariable(name = "id") Long id){
 		return productService.getProductById(id);
 	}
@@ -59,14 +61,14 @@ public class ProductController {
 		return productService.createProduct(newProduct);
 	}
 	
-	@PutMapping("/id/{id}")
+	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ProductDTO updateProductById(@RequestBody ProductDTO productupdated,
 										@PathVariable Long id) {
 		return productService.updateProductById(productupdated, id);
 	}
 	
-	@DeleteMapping("/id/{id}")
+	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteProductById(@PathVariable Long id) {
 		productService.deleteProductById(id);
