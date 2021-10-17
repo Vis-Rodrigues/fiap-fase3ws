@@ -12,6 +12,8 @@ public class ProductDTOCreateUpdate {
 	Double price;
 	String description;
 	String urlImage;
+	Integer rating;
+	Integer countInStock;
 	
 	public ProductDTOCreateUpdate() {}
 	
@@ -23,7 +25,9 @@ public class ProductDTOCreateUpdate {
 		this.isGlutenFree = product.getIsGlutenFree();
 		this.price = product.getPrice();
 		this.description = product.getDescription();
-		this.urlImage = product.getUrlImage();
+		this.urlImage = product.getImageUrl();
+		this.rating = product.getRating();
+		this.countInStock = product.getCountInStock();
 	}
 	
 	public String getName() {
@@ -88,6 +92,22 @@ public class ProductDTOCreateUpdate {
 
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
+	}
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public Integer getCountInStock() {
+		return countInStock;
+	}
+
+	public void setCountInStock(Integer countInStock) {
+		this.countInStock = countInStock;
 	}
 	
 }

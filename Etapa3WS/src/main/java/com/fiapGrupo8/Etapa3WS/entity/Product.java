@@ -19,7 +19,7 @@ public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long productId;
+	Long id;
 
 	@Column
 	String name;
@@ -43,17 +43,23 @@ public class Product implements Serializable {
 	String description;
 	
 	@Column
-	String urlImage;
+	String imageUrl;
 
+	@Column
+	Integer rating;
+	
+	@Column(name="qnt_stock")
+	Integer countInStock;
 	
 	public Product() {
 
 	}
 
-	public Product(Long product_id, String name, String brand, Boolean isVegan, Boolean isVegetarian,
-			Boolean isGlutenFree, Double price, String description, String urlImage) {
+	public Product(Long id, String name, String brand, Boolean isVegan, Boolean isVegetarian,
+			Boolean isGlutenFree, Double price, String description, String imageUrl, Integer rating,
+			Integer countInStock) {
 		super();
-		this.productId = product_id;
+		this.id = id;
 		this.name = name;
 		this.brand = brand;
 		this.isVegan = isVegan;
@@ -61,9 +67,11 @@ public class Product implements Serializable {
 		this.isGlutenFree = isGlutenFree;
 		this.price = price;
 		this.description = description;
-		this.urlImage = urlImage;
+		this.imageUrl = imageUrl;
+		this.rating = rating;
+		this.countInStock = countInStock;
 	}
-	
+
 	public Product(ProductDTOCreateUpdate product) {
 		this.name = product.getName();
 		this.brand = product.getBrand();
@@ -72,15 +80,17 @@ public class Product implements Serializable {
 		this.isGlutenFree = product.getIsGlutenFree();
 		this.price = product.getPrice();
 		this.description = product.getDescription();
-		this.urlImage = product.getUrlImage();
+		this.imageUrl = product.getUrlImage();
+		this.rating = product.getRating();
+		this.countInStock = product.getCountInStock();
 	}
 	
 	public Long getId() {
-		return productId;
+		return id;
 	}
 
-	public void setId(Long product_id) {
-		this.productId = product_id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -139,12 +149,28 @@ public class Product implements Serializable {
 		this.description = description;
 	}
 
-	public String getUrlImage() {
-		return urlImage;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public Integer getCountInStock() {
+		return countInStock;
+	}
+
+	public void setCountInStock(Integer countInStock) {
+		this.countInStock = countInStock;
 	}
 
 }

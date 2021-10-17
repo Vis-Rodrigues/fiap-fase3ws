@@ -12,7 +12,9 @@ public class ProductDTO {
 	Boolean isGlutenFree;
 	Double price;
 	String description;
-	String urlImage;
+	String imageUrl;
+	Integer rating;
+	Integer countInStock;
 	
 	public ProductDTO() {}
 	
@@ -26,7 +28,9 @@ public class ProductDTO {
 		this.isGlutenFree = product.getIsGlutenFree();
 		this.price = product.getPrice();
 		this.description = product.getDescription();
-		this.urlImage = product.getUrlImage();
+		this.imageUrl = product.getImageUrl();
+		this.rating = product.getRating();
+		this.countInStock = product.getCountInStock();
 		
 	}
 	
@@ -94,12 +98,28 @@ public class ProductDTO {
 		this.description = description;
 	}
 
-	public String getUrlImage() {
-		return urlImage;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
+	public Integer getRating() {
+		return rating;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public Integer getCountInStock() {
+		return countInStock;
+	}
+
+	public void setCountInStock(Integer countInStock) {
+		this.countInStock = countInStock;
+	}
+	
 }

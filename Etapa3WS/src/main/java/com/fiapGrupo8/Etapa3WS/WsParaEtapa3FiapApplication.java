@@ -40,7 +40,6 @@ public class WsParaEtapa3FiapApplication {
 			product1.setIsVegetarian(false);
 			product1.setIsGlutenFree(true);
 			product1.setPrice(0.50);
-			product1.setUrlImage("");
 			
 			Product product2 = new Product();
 			product2.setBrand("Organico");
@@ -49,7 +48,6 @@ public class WsParaEtapa3FiapApplication {
 			product2.setIsVegetarian(true);
 			product2.setIsGlutenFree(true);
 			product2.setPrice(4.50);
-			product2.setUrlImage("");
 			
 			Product product3 = new Product();
 			product3.setBrand("Organico");
@@ -58,7 +56,6 @@ public class WsParaEtapa3FiapApplication {
 			product3.setIsVegetarian(true);
 			product3.setIsGlutenFree(false);
 			product3.setPrice(3.50);
-			product3.setUrlImage("");
 			
 			productRepository.save(product1);
 			productRepository.save(product2);
