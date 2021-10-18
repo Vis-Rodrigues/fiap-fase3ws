@@ -1,6 +1,5 @@
 package com.fiapGrupo8.Etapa3WS.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fiapGrupo8.Etapa3WS.entity.Cart;

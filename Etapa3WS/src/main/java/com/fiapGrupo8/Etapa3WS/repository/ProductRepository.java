@@ -9,12 +9,6 @@ import com.fiapGrupo8.Etapa3WS.entity.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 	
-//	List<Product> findAllByIsVeganTrue();
-//
-//	List<Product> findAllByIsVegetarianTrue();
-//	
-//	List<Product> findAllByIsGlutenFreeTrue();
-
 	List<Product> findByIsVegan(Boolean isVegan);
 
 	List<Product> findByIsVegetarian(Boolean isVegetarian);
@@ -23,7 +17,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	List<Product> findAllByNameLike(String name);
 
-//	@Query("select p from Product p where p.id = ?1")
 	Optional<Product> findById(Long id);
 
 }
