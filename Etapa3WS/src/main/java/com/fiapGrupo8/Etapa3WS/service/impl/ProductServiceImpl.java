@@ -86,13 +86,18 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductDTO updateProductById(ProductDTO productDTO, Long id) {
 
-		Product product = null; //productRepository.findById(id).stream().findFirst().orElseThrow();
+		Product product = productRepository.findById(id)
+        		.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
 		product.setBrand(productDTO.getBrand());  
 		product.setIsGlutenFree(productDTO.getIsGlutenFree());
 		product.setIsVegan(productDTO.getIsVegan());
 		product.setIsVegetarian(productDTO.getIsVegetarian());
 		product.setName(productDTO.getName());
+		product.setImageUrl(productDTO.getImageUrl());
+		product.setRating(productDTO.getRating());
+		product.setCountInStock(productDTO.getCountInStock());
+		product.setPrice(productDTO.getPrice());
 
         Product savedProduct = productRepository.save(product);
         return new ProductDTO(savedProduct);
@@ -101,9 +106,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void deleteProductById(Long id) {
-//		Product product = productRepository.findById(id).stream().findFirst().orElseThrow();
-//		productRepository.delete(product);
-
+		Product product = productRepository.findById(id)
+        		.orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		productRepository.delete(product);
 	}
 
 }

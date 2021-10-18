@@ -5,7 +5,6 @@ import java.util.List;
 import com.fiapGrupo8.Etapa3WS.dto.CartDTO;
 import com.fiapGrupo8.Etapa3WS.dto.CartDTOCreateUpdate;
 
-
 public interface CartService {
 
 	List<CartDTO> getAllCarts();
